@@ -1,6 +1,6 @@
 ---
 name: claude-fanout
-description: "Fan work out to headless Claude Code workers running a cheap OpenRouter model through CLIProxyAPI, up to 6 at once, to keep bulk mechanical work off the main agent's quota. Same brief-and-verify discipline as opencode-fanout, on the Claude Code harness, which is why it does not stall. Use when a task splits into independent chunks that need a capable model but not your judgement. Requires the proxy to be up and a model chosen before dispatching. See devin-fanout for the free worker."
+description: "Fan work out to headless Claude Code workers running a cheap OpenRouter model through CLIProxyAPI, up to 6 at once, to keep bulk mechanical work off the main agent's quota. Use when a task splits into independent chunks that need a capable model but not your judgement. Requires the proxy to be up and a model chosen before dispatching."
 ---
 
 # Claude Fan-Out
@@ -9,9 +9,8 @@ Dispatch headless Claude Code runs as background workers, pointed at CLIProxyAPI
 credit instead of the Claude plan. Each worker is the full Claude Code agent in one directory; you write the brief, it
 writes the files, you review.
 
-**Why this and not OpenCode.** The same model that stalled OpenCode for fifteen minutes on a four-file brief finished
-the task under Claude Code in thirteen seconds, twice. The harness gives you `--max-turns`, a real exit code, JSON
-output, and it reads `AGENTS.md` and `CLAUDE.md` on its own, so briefs carry the task and not the house rules.
+**Why Headless Claude Code.** The harness gives you `--max-turns`, a real exit code, JSON output, and it reads
+`AGENTS.md` and `CLAUDE.md` on its own, so briefs carry the task and not the house rules.
 
 **Six concurrent workers is the ceiling.** Past that they contend for the same files and the review cost exceeds the
 saving.

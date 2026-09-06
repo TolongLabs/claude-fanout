@@ -1,3 +1,5 @@
+![Claude Fan-Out](assets/claude-fanout-banner.png)
+
 # Claude Fan-Out
 
 ![Claude Code skill](https://img.shields.io/badge/Claude_Code_skill-D97757?style=for-the-badge&logo=claude&logoColor=white)
@@ -17,7 +19,6 @@ _Fan-out_ is dispatching many independent workers at once and reviewing what com
   <ol>
     <li><a href="#what-it-does">What It Does</a></li>
     <li><a href="#quick-start">Quick Start</a></li>
-    <li><a href="#why-not-opencode">Why Not OpenCode</a></li>
     <li><a href="#which-model-to-use">Which Model to Use</a></li>
     <li><a href="#how-it-stays-safe">How It Stays Safe</a></li>
     <li><a href="#what-it-cannot-do">What It Cannot Do</a></li>
@@ -36,6 +37,8 @@ _Fan-out_ is dispatching many independent workers at once and reviewing what com
   `CLAUDE.md` on its own, so the brief carries the task and not the house rules.
 - **Up to Six at Once.** Launch them in parallel, each with its own brief, log and worktree, and never let two workers
   write the same file.
+- **A Real Harness.** It gives you `--max-turns`, a real exit code and JSON output, and it reads `AGENTS.md` and
+  `CLAUDE.md` on its own.
 
 If a task needs your judgement or your conversation context, you do not need this skill.
 
@@ -101,14 +104,6 @@ If a task needs your judgement or your conversation context, you do not need thi
    grep -c "<structural marker>" <output>                                 # right shape, right count
    grep -rn "/home/\|C:\\\\Users\|/tmp/" <output>                         # no machine paths leaked
    ```
-
-## Why Not OpenCode
-
-|                         | OpenCode CLI                                                | Headless Claude Code                                                                              |
-| ----------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| What Happens on a Stall | A brief could stall it for fifteen minutes                  | The same model finished the same four-file brief in thirteen seconds, twice                       |
-| House Rules             | The brief carries the task and the house rules              | It reads `AGENTS.md` and `CLAUDE.md` on its own, so briefs carry the task and not the house rules |
-| Stop Conditions         | Exits 0 whether or not it did anything, with no turn budget | The harness gives you `--max-turns`, a real exit code and JSON output                             |
 
 ## Which Model to Use
 
@@ -207,8 +202,6 @@ echo "exit=$?"
 | Read                   | When                                                                                     |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
 | [`SKILL.md`](SKILL.md) | You are writing a brief or a report: preflight, dispatch, verification and failure modes |
-| `devin-fanout`         | You want the free Devin worker instead of proxy-billed Claude Code workers               |
-| `opencode-fanout`      | You want the OpenCode CLI this skill replaces, because it stalled                        |
 
 ## Contributing
 
